@@ -30,7 +30,7 @@ https://rinkeby.rarible.com/token/0x3c25B95A6D4c5ca30b307b4e1E6108197116924B:0
 ## Edit `.env` file
 
 1. Copy the file named `.env.example` and rename it to `.env`.
-1. Replace dummy strings to values you got in Prerequisite 1/3/4.
+1. Replace dummy strings with values you got in Prerequisite 1/3/4.
 
 ## Commands
 
