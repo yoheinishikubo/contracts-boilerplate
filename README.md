@@ -5,11 +5,11 @@ The following points are determined because of the characteristics of the busine
 
 1. No ERC721. ERC1155 only.
 1. Rinkeby is picked as a testnet because top-tier marketplaces like OpenSea or Rarible have test versions with Rinkeby.
-1. The contract can be easily upgraded with UUPS proxy because keeping credits with stable contact addresses is important for the businesses above. However, the upgrade sample is not included because it's rare for those contracts to be upgraded.
+1. The contract can be easily upgraded with UUPS proxy because keeping credits with stable contact addresses is important for the businesses like above. However, the sample for upgrading is not included because it's rare for those contracts to be upgraded actually.
 1. A method to transfer tokens to a bunch of recipients at once is added. The method records events on chain when transfers are completed. A serious team can fetch the log from chain and can verify with the internal business system.
 1. The royalty from secondary sales is supported with ERC2981. Marketplaces like Rarible support this standard. In addition, the procedure to register the royalty with a custom smart contract without ERC2981 flavor to Rarible is introduced below in this document.
 
-You can see samples on testnet with the following urls.
+You can see samples on testnet with the following links.
 
 https://rinkeby.etherscan.io/address/0x3c25b95a6d4c5ca30b307b4e1e6108197116924b#code
 https://testnets.opensea.io/assets/0x3c25b95a6d4c5ca30b307b4e1e6108197116924b/0
@@ -82,7 +82,7 @@ A script for the deployment called with `yarn deploy`. You should modify some va
 
 ### `scripts/mint.ts`
 
-A script called with `yarn mint` for minting a NFT, transfering it to a bunch of recients at once, and tracking logs on chain to verify transfers. You should modify this first to meet your requirements.
+A script called with `yarn mint` for minting a NFT, transferring it to a bunch of recipients at once, and tracking logs on chain to verify transfers. You should modify this first to meet your requirements.
 
 # Define Royalties
 
@@ -93,7 +93,10 @@ The url of testnet version of OpenSea is `https://testnets.opensea.io`.
 
 ## Rarible
 
-The url of Rinkeby version of Rarible is `https://rinkeby.rarible.com`. Actually, the following procedure is not needed for the contract of this repository.
+```
+Actually, the following procedure is not needed for the contract of this repository.
+```
+The url of Rinkeby version of Rarible is `https://rinkeby.rarible.com`. 
 
 |      Chain       | Address                                                                                            |
 | :--------------: | :------------------------------------------------------------------------------------------------- |

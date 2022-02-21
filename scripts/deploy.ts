@@ -51,7 +51,7 @@ async function main() {
     .catch((err) => {
       console.log(
         `The verification was failed. It has already been verified or some issues are there.
-        https://rinkeby.etherscan.io/address/${implAddress}#code
+        https://${etherScanHost}/address/${implAddress}#code
         Try the following command.
         npx hardhat verify --network ${networkName} ${implAddress}`
       );
