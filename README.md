@@ -84,6 +84,7 @@ A script for the deployment called with `yarn deploy`. You should modify some va
 
 A script called with `yarn mint` for minting a NFT, transferring it to a bunch of recipients at once, and tracking logs on chain to verify transfers. You should modify this first to meet your requirements.
 
+
 # Define Royalties
 
 ## OpenSea
@@ -93,9 +94,8 @@ The url of testnet version of OpenSea is `https://testnets.opensea.io`.
 
 ## Rarible
 
-```
-Actually, the following procedure is not needed for the contract of this repository.
-```
+ **Actually, the following procedure is not needed for the contract of this repository.**
+
 The url of Rinkeby version of Rarible is `https://rinkeby.rarible.com`. 
 
 |      Chain       | Address                                                                                            |
