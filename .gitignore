@@ -28,9 +28,6 @@ typechain
 cache
 artifacts
 
-w80
-w80.ts
-
 # Created by https://www.toptal.com/developers/gitignore/api/macos,node,solidity
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,node,solidity
 

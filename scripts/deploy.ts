@@ -34,8 +34,6 @@ async function main() {
 
   const deployed = await erc1155Sample.deployed();
 
-  await new Promise((resolve) => setTimeout(resolve, 30000));
-
   const implAddress = await upgrades.erc1967.getImplementationAddress(
     deployed.address
   );
@@ -44,18 +42,45 @@ async function main() {
     `The implementation contract code can be shown on https://${etherScanHost}/address/${implAddress}#code`
   );
 
-  await hre
-    .run("verify:verify", {
-      address: implAddress,
-    })
-    .catch((err) => {
+  await new Promise((resolve) => setTimeout(resolve, 30000));
+
+  const maxErrors = 5;
+  let errors = [];
+
+  // https://github.com/OpenZeppelin/openzeppelin-upgrades/blob/master/packages/core/scripts/verify.js
+
+  const verifyImpl = async (address: any, constructorArguments: any) => {
+    while (errors.length < maxErrors) {
+      try {
+        await hre.run("verify:verify", {
+          address,
+          constructorArguments,
+        });
+        break;
+      } catch (e: any) {
+        if (e.message.includes("Contract source code already verified")) {
+          break;
+        } else {
+          errors.push(e);
+        }
+      }
+      console.log("contract not yet deployed. waiting...");
+      await new Promise((resolve) => setTimeout(resolve, 8000));
+    }
+
+    if (errors.length === maxErrors) {
       console.log(
         `The verification was failed. It has already been verified or some issues are there.
         https://${etherScanHost}/address/${implAddress}#code
         Try the following command.
         npx hardhat verify --network ${networkName} ${implAddress}`
       );
-    });
+    }
+  };
+
+  await verifyImpl(implAddress, "");
+
+  errors = [];
 
   await hre
     .run("verify:verify", {

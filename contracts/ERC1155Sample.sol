@@ -9,13 +9,14 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/common/ERC2981Upgradeable.sol";
+
 // import "@openzeppelin/contracts-upgradeable/utils/structs/EnumerableSetUpgradeable.sol";
-import "./royalties/ERC2981PerTokenRoyalties.sol";
 
 contract ERC1155Sample is
     ERC1155BurnableUpgradeable,
     ERC1155SupplyUpgradeable,
-    ERC2981PerTokenRoyalties,
+    ERC2981Upgradeable,
     OwnableUpgradeable,
     UUPSUpgradeable
 {
@@ -50,6 +51,7 @@ contract ERC1155Sample is
         _symbol = symbol_;
         __ERC1155_init(uri_);
         __Ownable_init_unchained();
+        __ERC2981_init_unchained();
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
@@ -66,7 +68,7 @@ contract ERC1155Sample is
         public
         view
         virtual
-        override(ERC1155Upgradeable, ERC2981Base)
+        override(ERC1155Upgradeable, ERC2981Upgradeable)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
@@ -86,7 +88,7 @@ contract ERC1155Sample is
     function mint(
         address _account,
         uint256 _amount,
-        uint256 _royaltyValue
+        uint96 _royaltyValue
     ) external onlyOwner {
         uint256 tokenId = _nextId;
         while (exists(tokenId)) {
