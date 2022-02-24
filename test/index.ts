@@ -26,7 +26,7 @@ describe("ERC1155Sample", async function () {
     const args = [
       "ERC1155 Sample Token",
       "S1155",
-      "https://raw.githubusercontent.com/yoheinishikubo/contracts-boilerplate/main/metadata/{id}.json",
+      "https://dummy-metadata.appspot.com/{id}.json",
     ];
     const ERC1155Sample = await ethers.getContractFactory("ERC1155Sample");
 
